@@ -4,10 +4,10 @@ echo "Tentativas de Login Falhas:"
 echo "---------------------------"
 echo "Contagem   Usuário"
 echo "---------------------------"
-# filtra o arquivo var/log/auth.log e extrai apenas as linhas que contêm a frase "Failed password for"
-grep "Failed password for" /var/log/auth.log | \
+# filtra o arquivo var/log/auth.log e extrai apenas as linhas que contêm a frase "authentication failure"
+grep "authentication failure" /var/log/auth.log | \
    # extrai o nome de usuário da linha correspondente
-    grep -oP 'for \K[^ ]+' | \
+    grep -oP 'user=\K\S+' | \
    # ordena os nomes de usuário
     sort | \
     # uniq remove linhas duplicadas e -c conta as ocorrências
